@@ -17,8 +17,6 @@
   --border:#1f1f30;
   --border2:#2a2a40;
   --green:#6dff5e;
-  --green2:#4dcc41;
-  --green-glow:rgba(109,255,94,0.15);
   --amber:#f7c948;
   --text:#ece8e0;
   --mid:#7c7870;
@@ -28,41 +26,23 @@
   --mono:'DM Mono',monospace;
 }
 html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--text);font-family:var(--sans);overflow-x:hidden;min-height:100vh}
-
-/* scrollbar */
+body{background:var(--black);color:var(--text);font-family:var(--sans);overflow-x:hidden}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 
-/* ── CURSOR ── */
-.cursor{position:fixed;width:10px;height:10px;background:var(--green);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,width .2s,height .2s,background .2s;mix-blend-mode:difference}
-.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(109,255,94,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .35s cubic-bezier(.16,1,.3,1);mix-blend-mode:difference}
-body:hover .cursor{opacity:1}
-
-/* ── NOISE ── */
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9997;opacity:.6}
-
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;background:rgba(5,5,10,0.88);backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid rgba(255,255,255,0.04)}
-.nav-logo{font-family:var(--sans);font-weight:800;font-size:17px;letter-spacing:.22em;color:var(--text);cursor:pointer;transition:color .2s}
-.nav-logo:hover{color:var(--green)}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;background:rgba(5,5,10,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.04)}
+.nav-logo{font-family:var(--sans);font-weight:800;font-size:17px;letter-spacing:.22em;color:var(--text);cursor:pointer}
 .nav-pill{font-family:var(--mono);font-size:9px;color:var(--green);background:rgba(109,255,94,.07);border:1px solid rgba(109,255,94,.18);padding:4px 10px;border-radius:20px;letter-spacing:.12em;display:flex;align-items:center;gap:6px}
 .nav-pill::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.nav-btn{font-family:var(--mono);font-size:10px;color:var(--black);background:var(--green);border:none;padding:8px 16px;border-radius:6px;cursor:pointer;letter-spacing:.08em;font-weight:500;position:relative;overflow:hidden;transition:all .2s}
-.nav-btn::after{content:'';position:absolute;inset:0;background:white;opacity:0;transition:opacity .15s}
-.nav-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(109,255,94,.3)}
-.nav-btn:hover::after{opacity:.1}
-.nav-btn:active{transform:translateY(0);box-shadow:none}
+.nav-btn{font-family:var(--mono);font-size:10px;color:var(--black);background:var(--green);border:none;padding:8px 16px;border-radius:6px;cursor:pointer;letter-spacing:.08em;font-weight:500;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.nav-btn:active{transform:scale(.96);opacity:.85}
 
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 20px 48px;position:relative;overflow:hidden}
-
-/* grid bg */
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(109,255,94,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(109,255,94,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 100% 80% at 50% 100%,black 0%,transparent 70%)}
-
-/* orbs */
 .orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
 .orb1{width:380px;height:380px;background:radial-gradient(circle,rgba(109,255,94,.08),transparent 70%);top:-80px;right:-100px;animation:float1 8s ease-in-out infinite}
 .orb2{width:280px;height:280px;background:radial-gradient(circle,rgba(247,201,72,.05),transparent 70%);bottom:100px;left:-80px;animation:float2 10s ease-in-out infinite}
@@ -71,14 +51,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 
 .hero-eyebrow{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:.22em;margin-bottom:16px;display:flex;align-items:center;gap:10px;opacity:0;animation:up .7s .1s ease forwards}
 .hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--green)}
-
 .hero-h1{font-family:var(--serif);font-size:clamp(56px,14vw,110px);line-height:.9;color:var(--text);margin-bottom:6px;opacity:0;animation:up .7s .2s ease forwards}
 .hero-h1 em{font-style:italic;color:var(--green);display:block}
-.hero-h1 span{display:block;font-size:.38em;font-family:var(--sans);font-weight:300;color:var(--mid);letter-spacing:.06em;margin-top:12px;line-height:1.4}
+.hero-h1 span{display:block;font-size:.38em;font-family:var(--sans);font-weight:300;color:var(--mid);letter-spacing:.04em;margin-top:14px;line-height:1.5}
 
 .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:28px 0 24px;opacity:0;animation:up .7s .4s ease forwards}
 .stat{background:var(--surface);padding:18px 12px;text-align:center;transition:background .2s}
-.stat:hover{background:var(--card)}
+.stat:active{background:var(--card)}
 .stat-n{font-family:var(--serif);font-size:30px;color:var(--green);display:block;line-height:1}
 .stat-l{font-family:var(--mono);font-size:8px;color:var(--dim);letter-spacing:.14em;margin-top:4px}
 
@@ -86,39 +65,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .tag{font-family:var(--mono);font-size:9px;padding:4px 10px;border-radius:4px;letter-spacing:.1em;border:1px solid}
 .tg{color:var(--green);border-color:rgba(109,255,94,.2);background:rgba(109,255,94,.06)}
 .ty{color:var(--amber);border-color:rgba(247,201,72,.2);background:rgba(247,201,72,.06)}
-.tw{color:var(--mid);border-color:var(--border2);background:transparent}
+.tw{color:var(--mid);border-color:var(--border2)}
 
 .hero-actions{display:flex;flex-direction:column;gap:10px;opacity:0;animation:up .7s .6s ease forwards}
 
 /* ── BUTTONS ── */
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.04em;border-radius:10px;position:relative;overflow:hidden;transition:all .25s cubic-bezier(.16,1,.3,1);text-decoration:none;-webkit-tap-highlight-color:transparent}
-
-.btn-main{background:var(--green);color:var(--black);padding:15px 22px;box-shadow:0 0 0 0 rgba(109,255,94,0)}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(109,255,94,.35)}
-.btn-main:active{transform:translateY(0) scale(.98);box-shadow:0 4px 12px rgba(109,255,94,.2)}
-
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.04em;border-radius:10px;position:relative;overflow:hidden;transition:all .25s cubic-bezier(.16,1,.3,1);text-decoration:none;-webkit-tap-highlight-color:transparent;user-select:none}
+.btn-main{background:var(--green);color:var(--black);padding:15px 22px}
+.btn-main:active{transform:scale(.97);background:#82ff72}
 .btn-ghost{background:transparent;color:var(--mid);padding:14px 22px;border:1px solid var(--border2)}
-.btn-ghost:hover{border-color:var(--mid);color:var(--text);transform:translateY(-1px)}
-.btn-ghost:active{transform:scale(.98)}
-
-/* ripple */
-.btn .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.25);transform:scale(0);animation:ripple .5s ease-out;pointer-events:none}
+.btn-ghost:active{background:rgba(255,255,255,.04);color:var(--text)}
+.btn-arrow{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:rgba(0,0,0,.15);border-radius:4px;font-size:11px}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.25);transform:scale(0);animation:ripple .5s ease-out;pointer-events:none}
 @keyframes ripple{to{transform:scale(4);opacity:0}}
-
-/* arrow icon */
-.btn-arrow{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:rgba(0,0,0,.15);border-radius:4px;font-size:10px;transition:transform .2s}
-.btn-main:hover .btn-arrow{transform:translateX(2px)}
-
-/* ── DIVIDER ── */
-.div{height:1px;background:linear-gradient(90deg,transparent,var(--border2) 30%,var(--border2) 70%,transparent);margin:0 20px}
 
 /* ── MARQUEE ── */
 .marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:13px 0;background:var(--deep)}
 .mtrack{display:flex;width:max-content;animation:mrq 22s linear infinite}
-.mtrack:hover{animation-play-state:paused}
 .mitem{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.15em;padding:0 28px;flex-shrink:0;white-space:nowrap}
 .mitem b{color:var(--green);font-weight:400}
 @keyframes mrq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2) 30%,var(--border2) 70%,transparent);margin:0 20px}
 
 /* ── SECTION ── */
 .sec{padding:56px 20px}
@@ -128,11 +97,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .sec-h2 em{font-style:italic;color:var(--green)}
 
 /* ── PRODUCT CARDS ── */
-.pcards{display:flex;flex-direction:column;gap:12px}
-.pcard{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .3s cubic-bezier(.16,1,.3,1)}
-.pcard:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
-.pcard.feat{border-color:rgba(109,255,94,.2);background:linear-gradient(135deg,var(--card) 0%,rgba(109,255,94,.03) 100%)}
-.pcard.feat:hover{box-shadow:0 20px 40px rgba(0,0,0,.4),0 0 40px rgba(109,255,94,.08)}
+.pcards{display:flex;flex-direction:column;gap:14px}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .3s}
+.pcard:active{transform:scale(.99)}
+.pcard.feat{border-color:rgba(109,255,94,.22);background:linear-gradient(135deg,var(--card) 0%,rgba(109,255,94,.03) 100%)}
 
 .pcard-top{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
 .ptier{font-family:var(--mono);font-size:8px;letter-spacing:.14em;padding:3px 9px;border-radius:3px;border:1px solid}
@@ -149,56 +117,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .pfeat li:last-child{border:none}
 .pfeat li::before{content:'→';color:var(--green);flex-shrink:0;margin-top:1px;font-size:11px}
 
-/* product CTA buttons */
-.pcta{margin-top:14px;width:100%;padding:12px;border-radius:8px;font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.04em;cursor:pointer;border:none;position:relative;overflow:hidden;transition:all .25s cubic-bezier(.16,1,.3,1)}
-.pcta:hover{transform:translateY(-1px)}
-.pcta:active{transform:scale(.98)}
+.pcta{margin-top:14px;width:100%;padding:13px;border-radius:8px;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.04em;cursor:pointer;border:none;position:relative;overflow:hidden;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.pcta:active{transform:scale(.97)}
 .pcta-e{background:rgba(255,255,255,.04);color:var(--mid);border:1px solid var(--border2)}
-.pcta-e:hover{background:rgba(255,255,255,.07);color:var(--text);border-color:var(--mid)}
+.pcta-e:active{background:rgba(255,255,255,.08);color:var(--text)}
 .pcta-c{background:rgba(247,201,72,.1);color:var(--amber);border:1px solid rgba(247,201,72,.2)}
-.pcta-c:hover{background:rgba(247,201,72,.18);box-shadow:0 8px 20px rgba(247,201,72,.15)}
+.pcta-c:active{background:rgba(247,201,72,.2)}
 .pcta-p{background:var(--green);color:var(--black);font-weight:700}
-.pcta-p:hover{background:#85ff76;box-shadow:0 10px 28px rgba(109,255,94,.35)}
+.pcta-p:active{background:#82ff72}
 
 /* ── HOW IT WORKS ── */
 .steps{display:flex;flex-direction:column}
-.step{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--border);align-items:flex-start;transition:all .3s}
+.step{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--border);align-items:flex-start}
 .step:last-child{border:none}
-.step:hover .snum{color:var(--green)}
-.snum{font-family:var(--serif);font-size:44px;color:var(--border2);line-height:1;flex-shrink:0;width:48px;transition:color .3s}
-.scontent{}
-.stitle{font-weight:700;font-size:14px;margin-bottom:4px;transition:color .2s}
-.step:hover .stitle{color:var(--green)}
+.snum{font-family:var(--serif);font-size:44px;color:var(--border2);line-height:1;flex-shrink:0;width:48px}
+.stitle{font-weight:700;font-size:14px;margin-bottom:4px}
 .sdesc{font-size:12px;color:var(--mid);line-height:1.65}
 .sbadge{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:8px;color:var(--green);background:rgba(109,255,94,.07);border:1px solid rgba(109,255,94,.18);padding:3px 8px;border-radius:3px;letter-spacing:.1em}
 
 /* ── OS PANEL ── */
-#os-section{background:var(--deep)}
 .os-wrap{display:flex;flex-direction:column;height:calc(100dvh - 52px)}
-
 .os-topbar{padding:12px 18px;background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .os-dots{display:flex;gap:5px}
 .osd{width:9px;height:9px;border-radius:50%}
 .osd-r{background:#e05a5a}
 .osd-y{background:#f5c842}
 .osd-g{background:var(--green);box-shadow:0 0 6px rgba(109,255,94,.5)}
-.os-caption{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.14em}
+.os-caption{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.1em}
 .os-live{font-family:var(--mono);font-size:9px;color:var(--green);display:flex;align-items:center;gap:5px}
 .os-live::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 1.5s infinite}
 
 .os-tabs{display:flex;overflow-x:auto;background:var(--card);border-bottom:1px solid var(--border);flex-shrink:0;scrollbar-width:none}
 .os-tabs::-webkit-scrollbar{display:none}
-.otab{flex-shrink:0;padding:11px 14px;font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.08em;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
-.otab:hover{color:var(--mid)}
+.otab{flex-shrink:0;padding:11px 14px;font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.08em;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
 .otab.on{color:var(--green);border-bottom-color:var(--green);background:rgba(109,255,94,.03)}
 
 .os-body{flex:1;overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch}
-.os-block{margin-bottom:12px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .2s}
-.os-block:hover{border-color:var(--border2)}
+.os-block{margin-bottom:12px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .os-bh{padding:12px 16px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:#c0bab0;letter-spacing:.03em}
 .os-bb{padding:14px 16px}
 
-/* OS lines */
 .ol{font-size:12.5px;line-height:1.8;padding:2px 0;color:var(--mid)}
 .ol.arr,.ol.no{display:flex;gap:9px;align-items:flex-start}
 .ol .sym{flex-shrink:0;margin-top:2px;font-size:11px}
@@ -231,45 +189,32 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
 .modal{background:var(--card);border:1px solid var(--border2);border-radius:16px;width:100%;max-width:420px;overflow:hidden;animation:up .35s cubic-bezier(.16,1,.3,1)}
 .mh{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .mh-title{font-weight:700;font-size:15px}
-.mh-close{background:rgba(255,255,255,.06);border:1px solid var(--border2);color:var(--mid);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.mh-close:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.mh-close{background:rgba(255,255,255,.06);border:1px solid var(--border2);color:var(--mid);width:30px;height:30px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.mh-close:active{background:rgba(255,255,255,.12)}
 .mb{padding:20px}
 .fg{margin-bottom:14px}
 .fl2{display:block;font-family:var(--mono);font-size:9px;color:var(--mid);letter-spacing:.15em;margin-bottom:6px}
-.fi{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:11px 14px;font-family:var(--mono);font-size:12px;color:var(--text);outline:none;transition:border-color .2s}
+.fi{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:11px 14px;font-family:var(--mono);font-size:12px;color:var(--text);outline:none;transition:border-color .2s;-webkit-appearance:none}
 .fi:focus{border-color:rgba(109,255,94,.5);box-shadow:0 0 0 3px rgba(109,255,94,.08)}
 .fi::placeholder{color:var(--dim)}
-.fsel{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:11px 14px;font-family:var(--mono);font-size:12px;color:var(--text);outline:none;appearance:none;cursor:pointer}
-.fsel option{background:var(--surface)}
-.fsub{width:100%;background:var(--green);color:var(--black);border:none;padding:14px;border-radius:10px;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.04em;cursor:pointer;margin-top:6px;position:relative;overflow:hidden;transition:all .25s cubic-bezier(.16,1,.3,1)}
-.fsub:hover{background:#82ff72;transform:translateY(-1px);box-shadow:0 10px 28px rgba(109,255,94,.3)}
-.fsub:active{transform:scale(.99)}
-.fnote{text-align:center;font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:12px;letter-spacing:.1em}
+.fsub{width:100%;background:var(--green);color:var(--black);border:none;padding:14px;border-radius:10px;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.04em;cursor:pointer;margin-top:6px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.fsub:active{transform:scale(.97);background:#82ff72}
+.fnote{text-align:center;font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:12px;letter-spacing:.08em;line-height:1.6}
 
-/* ── ANIMATIONS ── */
-@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+/* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.vis{opacity:1;transform:translateY(0)}
 
-/* mobile touch button feel */
-@media(hover:none){
-  .btn-main:hover,.btn-ghost:hover,.pcta:hover{transform:none;box-shadow:none}
-  .btn-main:active{transform:scale(.97)}
-  .pcta:active{transform:scale(.97)}
-}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
-<!-- cursor -->
-<div class="cursor" id="cur"></div>
-<div class="cursor-ring" id="curR"></div>
-
 <!-- NAV -->
 <nav>
-  <div class="nav-logo" onclick="scrollTo({top:0,behavior:'smooth'})">UGRADE.</div>
+  <div class="nav-logo">UGRADE.</div>
   <div class="nav-pill">AI AGENCY</div>
-  <button class="nav-btn" onclick="openModal()">MULAI →</button>
+  <button class="nav-btn" onclick="openModal()">ORDER →</button>
 </nav>
 
 <!-- HERO -->
@@ -277,20 +222,16 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
   <div class="hero-grid"></div>
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
-
   <div class="hero-eyebrow">AI TRANSFORMATION AGENCY — INDONESIA</div>
-
   <h1 class="hero-h1">
     Naik<br><em>Level.</em>
     <span>Sistem upgrade identity, skill & income<br>berbasis AI untuk anak muda 15–30 tahun.</span>
   </h1>
-
   <div class="hero-stats">
     <div class="stat"><span class="stat-n">24h</span><div class="stat-l">DELIVERY</div></div>
     <div class="stat"><span class="stat-n">AI</span><div class="stat-l">POWERED</div></div>
     <div class="stat"><span class="stat-n">90%</span><div class="stat-l">MARGIN</div></div>
   </div>
-
   <div class="hero-tags">
     <span class="tag tg">FACELESS</span>
     <span class="tag tg">LOW-COST</span>
@@ -298,7 +239,6 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
     <span class="tag tw">MODAL Rp500K</span>
     <span class="tag tw">AI-NATIVE</span>
   </div>
-
   <div class="hero-actions">
     <button class="btn btn-main" onclick="openModal()">
       AUDIT IDENTITY SEKARANG
@@ -341,7 +281,7 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
     <div class="pcard reveal">
       <div class="pcard-top">
         <span class="ptier pt-e">ENTRY</span>
-        <div class="pprice">Rp75K</div>
+        <div class="pprice">Rp75.000</div>
       </div>
       <div class="pcard-body">
         <div class="pname">Identity Audit</div>
@@ -351,8 +291,9 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
           <li>Identity Score 0–100 dengan breakdown per aspek</li>
           <li>3 rekomendasi spesifik yang bisa langsung dieksekusi</li>
           <li>PDF branded 3–5 halaman, delivered via Telegram DM</li>
+          <li>Garansi revisi 1x, selesai dalam 24 jam</li>
         </ul>
-        <button class="pcta pcta-e" onclick="openModal('entry')">PESAN SEKARANG →</button>
+        <button class="pcta pcta-e" onclick="openModal('Identity Audit - Rp75.000')">PESAN SEKARANG →</button>
       </div>
     </div>
 
@@ -369,16 +310,16 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
           <li>Personal brand statement 3 versi (AI-generated)</li>
           <li>30 template konten siap pakai sesuai niche kamu</li>
           <li>Custom learning roadmap 30 hari + AI prompt toolkit</li>
-          <li>PDF Brand Guidebook personal</li>
+          <li>PDF Brand Guidebook personal + follow-up hari ke-7</li>
         </ul>
-        <button class="pcta pcta-c" onclick="openModal('core')">PESAN SEKARANG →</button>
+        <button class="pcta pcta-c" onclick="openModal('Identity + Skill Build - Rp350K-650K')">PESAN SEKARANG →</button>
       </div>
     </div>
 
     <div class="pcard feat reveal">
       <div class="pcard-top">
         <span class="ptier pt-p">★ PREMIUM</span>
-        <div class="pprice">Rp1.75JT</div>
+        <div class="pprice">Rp1.750.000</div>
       </div>
       <div class="pcard-body">
         <div class="pname">Full Upgrade System</div>
@@ -391,14 +332,14 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
           <li>Weekly progress report + portfolio mini (Notion/Carrd)</li>
           <li>Intro ke 1 potential client/partner dari network UGRADE</li>
         </ul>
-        <button class="pcta pcta-p" onclick="openModal('premium')">DAFTAR SEKARANG →</button>
+        <button class="pcta pcta-p" onclick="openModal('Full Upgrade System - Rp1.750.000')">DAFTAR SEKARANG →</button>
       </div>
     </div>
 
   </div>
 </section>
 
-<div class="div"></div>
+<div class="divider"></div>
 
 <!-- HOW IT WORKS -->
 <section class="sec reveal">
@@ -408,16 +349,16 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
     <div class="step reveal">
       <div class="snum">01</div>
       <div class="scontent">
-        <div class="stitle">Isi Form Intake</div>
-        <div class="sdesc">Ceritakan goal kamu, kirim link platform, dan screenshot profil. Prosesnya 5 menit dari HP.</div>
-        <span class="sbadge">TALLY FORM → AUTO NOTIF</span>
+        <div class="stitle">Tap Pesan & Isi Form</div>
+        <div class="sdesc">Kamu diarahkan langsung ke DM admin @ugradeone di Telegram. Ceritakan goal kamu, kirim link platform. Prosesnya 5 menit.</div>
+        <span class="sbadge">LANGSUNG KE ADMIN</span>
       </div>
     </div>
     <div class="step reveal">
       <div class="snum">02</div>
       <div class="scontent">
         <div class="stitle">AI Processing</div>
-        <div class="sdesc">AI kami analisis semua data dan generate deliverables yang spesifik untuk kamu — bukan template generik.</div>
+        <div class="sdesc">AI kami analisis semua data dan generate deliverables spesifik untuk kamu — bukan template generik.</div>
         <span class="sbadge">CHATGPT-4o + CLAUDE SONNET</span>
       </div>
     </div>
@@ -425,14 +366,14 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
       <div class="snum">03</div>
       <div class="scontent">
         <div class="stitle">Human Review</div>
-        <div class="sdesc">Tim kami review dan personalisasi hasilnya. Satu pertanyaan yang selalu kami tanyakan: "Apakah ini dibuat khusus untuk mereka?"</div>
+        <div class="sdesc">Tim kami review dan personalisasi hasilnya sampai terasa dibuat khusus untuk kamu.</div>
         <span class="sbadge">QC ± 20 MENIT</span>
       </div>
     </div>
     <div class="step reveal">
       <div class="snum">04</div>
       <div class="scontent">
-        <div class="stitle">Delivered ke Telegram</div>
+        <div class="stitle">Delivered via Telegram</div>
         <div class="sdesc">Semua file dikirim langsung ke DM kamu, lengkap dengan voice note penjelasan cara pakainya.</div>
         <span class="sbadge">≤ 24 JAM DARI ORDER</span>
       </div>
@@ -440,7 +381,7 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
   </div>
 </section>
 
-<div class="div"></div>
+<div class="divider"></div>
 
 <!-- STARTUP OS -->
 <section id="os" style="background:var(--deep)">
@@ -449,7 +390,6 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
     <h2 class="sec-h2">Startup <em>OS</em><br>lengkap.</h2>
     <p style="font-size:13px;color:var(--mid);line-height:1.65">Sistem operasional penuh — brand, produk, marketing, sampai scaling strategy.</p>
   </div>
-
   <div class="os-wrap">
     <div class="os-topbar">
       <div class="os-dots">
@@ -457,7 +397,7 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
         <div class="osd osd-y"></div>
         <div class="osd osd-g"></div>
       </div>
-      <div class="os-caption">UGRADE.OS — STARTUP OPERATING SYSTEM v1.0</div>
+      <div class="os-caption">UGRADE.OS — v1.0</div>
       <div class="os-live">LIVE</div>
     </div>
     <div class="os-tabs" id="osTabs">
@@ -483,42 +423,42 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
   <div class="sec-label" style="justify-content:center;margin-bottom:16px">MULAI SEKARANG</div>
   <h2>Upgrade <em>diri</em><br>hari ini.</h2>
   <p>Modal kecil. Output nyata. Delivered dalam 24 jam.<br>Anak muda Indonesia layak naik level.</p>
-  <button class="btn btn-main" style="max-width:320px;margin:0 auto 0" onclick="openModal()">
+  <button class="btn btn-main" style="max-width:320px;margin:0 auto" onclick="openModal()">
     AUDIT IDENTITY — Rp75.000
     <span class="btn-arrow">→</span>
   </button>
-  <div class="fcta-note">Garansi revisi 1x &nbsp;·&nbsp; Delivered &lt;24 jam &nbsp;·&nbsp; Via Telegram</div>
+  <div class="fcta-note">Garansi revisi 1x &nbsp;·&nbsp; Delivered &lt;24 jam &nbsp;·&nbsp; DM langsung ke admin</div>
 </section>
 
 <footer>
   <div class="fl">UGRADE.</div>
-  <div class="fc">AI TRANSFORMATION AGENCY — FACELESS · AI-NATIVE · LOW-COST<br>© 2024 UGRADE. SEMUA HAK DILINDUNGI.</div>
+  <div class="fc">AI TRANSFORMATION AGENCY — FACELESS · AI-NATIVE · LOW-COST<br>Contact: @ugradeone di Telegram · © 2024 UGRADE.</div>
 </footer>
 
-<!-- MODAL -->
+<!-- MODAL ORDER -->
 <div class="overlay" id="modal">
   <div class="modal">
     <div class="mh">
-      <div class="mh-title">Order UGRADE.</div>
+      <div class="mh-title">Order UGRADE. 🚀</div>
       <button class="mh-close" onclick="closeModal()">✕</button>
     </div>
     <div class="mb">
       <div class="fg">
         <label class="fl2">NAMA LENGKAP</label>
-        <input class="fi" type="text" placeholder="Nama kamu" id="iNama">
+        <input class="fi" type="text" placeholder="Nama kamu" id="iNama" autocomplete="name">
       </div>
       <div class="fg">
-        <label class="fl2">USERNAME TELEGRAM</label>
-        <input class="fi" type="text" placeholder="@username" id="iTg">
+        <label class="fl2">USERNAME TELEGRAM KAMU</label>
+        <input class="fi" type="text" placeholder="@username" id="iTg" autocomplete="off">
       </div>
       <div class="fg">
-        <label class="fl2">PILIH PRODUK</label>
-        <select class="fi fsel" id="iProd">
+        <label class="fl2">PRODUK YANG DIPILIH</label>
+        <select class="fi" id="iProd">
           <option value="">-- Pilih produk --</option>
           <option value="Identity Audit (Rp75.000)">Identity Audit — Rp75.000</option>
           <option value="Identity Build (Rp350.000)">Identity Build — Rp350.000</option>
           <option value="Skill Build (Rp450.000)">Skill Build — Rp450.000</option>
-          <option value="Identity + Skill Bundle (Rp650.000)">Bundle Identity + Skill — Rp650.000</option>
+          <option value="Bundle Identity + Skill (Rp650.000)">Bundle Identity + Skill — Rp650.000</option>
           <option value="Full Upgrade System (Rp1.750.000)">Full Upgrade System — Rp1.750.000</option>
         </select>
       </div>
@@ -526,33 +466,16 @@ footer{border-top:1px solid var(--border);padding:20px;background:var(--deep)}
         <label class="fl2">GOAL UTAMA KAMU</label>
         <input class="fi" type="text" placeholder="Contoh: dapet klien freelance pertama" id="iGoal">
       </div>
-      <button class="fsub" onclick="submitOrder()">KIRIM ORDER →</button>
-      <div class="fnote">Tim kami akan contact via Telegram dalam 1 jam setelah submit</div>
+      <button class="fsub" onclick="submitOrder()">KIRIM KE ADMIN →</button>
+      <div class="fnote">
+        Kamu akan diarahkan ke DM <b>@ugradeone</b> di Telegram.<br>
+        Admin akan reply dalam 1 jam. Garansi revisi 1x.
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-// ── CURSOR (desktop only) ──
-const cur=document.getElementById('cur'),curR=document.getElementById('curR');
-let mx=0,my=0,rx=0,ry=0;
-if(window.matchMedia('(pointer:fine)').matches){
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    cur.style.left=mx+'px';cur.style.top=my+'px';
-  });
-  setInterval(()=>{
-    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
-    curR.style.left=rx+'px';curR.style.top=ry+'px';
-  },16);
-  document.querySelectorAll('button,a,.pcard,.step').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{cur.style.width='16px';cur.style.height='16px'});
-    el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px'});
-  });
-} else {
-  cur.style.display='none';curR.style.display='none';
-}
-
 // ── RIPPLE ──
 document.querySelectorAll('.btn,.pcta,.fsub,.nav-btn').forEach(btn=>{
   btn.addEventListener('click',function(e){
@@ -566,26 +489,70 @@ document.querySelectorAll('.btn,.pcta,.fsub,.nav-btn').forEach(btn=>{
   });
 });
 
-// ── SCROLL REVEAL ──
+// ── REVEAL ──
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});
-},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach((el,i)=>{
-  el.style.transitionDelay=(i%4)*.08+'s';
+  el.style.transitionDelay=(i%4)*.07+'s';
   obs.observe(el);
 });
+
+// ── MODAL ──
+function openModal(produk){
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(produk){
+    const sel=document.getElementById('iProd');
+    for(let i=0;i<sel.options.length;i++){
+      if(sel.options[i].value.includes(produk.split('-')[0].trim())){
+        sel.selectedIndex=i;break;
+      }
+    }
+  }
+  setTimeout(()=>document.getElementById('iNama').focus(),300);
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.getElementById('modal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+
+function submitOrder(){
+  const n=document.getElementById('iNama').value.trim();
+  const t=document.getElementById('iTg').value.trim();
+  const p=document.getElementById('iProd').value;
+  const g=document.getElementById('iGoal').value.trim();
+  if(!n||!p||!g){alert('Lengkapi semua field ya!');return;}
+  const tgUser=t?`\nTelegram saya: ${t}`:'';
+  const msg=encodeURIComponent(
+`Halo kak! Saya mau order UGRADE. 🚀
+
+Nama: ${n}${tgUser}
+Produk: ${p}
+Goal: ${g}
+
+Mohon infonya lebih lanjut ya kak, terima kasih!`
+  );
+  window.open(`https://t.me/ugradeone?text=${msg}`,'_blank');
+  closeModal();
+}
 
 // ── OS DATA ──
 const D={
   brand:[
     {h:'🏷 NAMA BRAND',l:[
       {t:'bold',v:'UGRADE.'},
-      {t:'text',v:'Alternatif: LVLUP.ID / NAIK.CO / ARCFORM'},
+      {t:'text',v:'Baca: "Upgrade" — huruf P dihilangkan secara simbolis (kamu yang mengisi P-nya = Personal)'},
       {t:'sp'},
       {t:'hd',v:'KENAPA UGRADE'},
       {t:'arr',v:'Mudah diingat, pendek, bisa jadi username di semua platform'},
-      {t:'arr',v:'Bermakna "upgrade" tapi dengan identity unik — huruf P dihilangkan (symbolic)'},
-      {t:'arr',v:'Cocok untuk Telegram, watermark konten faceless, brand kit minimalis'},
+      {t:'arr',v:'Bermakna "upgrade" tapi dengan identity yang unik dan memorable'},
+      {t:'arr',v:'Cocok untuk Telegram channel, watermark konten faceless, brand kit minimalis'},
     ]},
     {h:'🎯 POSITIONING',l:[
       {t:'text',v:'"Sistem upgrade diri untuk anak muda yang ingin naik level — identity, skill, dan income — tanpa modal besar atau mentor mahal."'},
@@ -593,117 +560,106 @@ const D={
       {t:'hd',v:'DIFERENSIASI'},
       {t:'arr',v:'Bukan kursus → Kita adalah sistem'},
       {t:'arr',v:'Bukan mentor → Kita adalah co-pilot AI'},
-      {t:'arr',v:'Bukan motivasi kosong → Kita deliver output nyata'},
+      {t:'arr',v:'Bukan motivasi kosong → Kita deliver output nyata yang langsung bisa dipakai'},
     ]},
     {h:'👁 VISI & MISI',l:[
       {t:'hd',v:'VISI'},
       {t:'text',v:'"Menjadi sistem upgrade terpercaya bagi 1 juta anak muda Asia Tenggara sebelum 2030."'},
       {t:'hd',v:'MISI'},
-      {t:'arr',v:'Membuat upgrade diri jadi affordable & accessible'},
-      {t:'arr',v:'Memberikan sistem, bukan sekadar ilmu'},
+      {t:'arr',v:'Membuat upgrade diri jadi affordable & accessible untuk semua'},
+      {t:'arr',v:'Memberikan sistem nyata, bukan sekadar ilmu'},
       {t:'arr',v:'Membantu anak muda temukan identity, skill, dan income dalam 30 hari'},
       {t:'arr',v:'Menggunakan AI sebagai leverage untuk efisiensi maksimal'},
     ]},
     {h:'💎 CORE VALUES',l:[
-      {t:'arr',v:'REAL OVER HYPE — Output nyata, bukan janji-janji'},
+      {t:'arr',v:'REAL OVER HYPE — Output nyata, bukan janji-janji kosong'},
       {t:'arr',v:'SYSTEM FIRST — Semua harus bisa direplikasi dan diskalakan'},
-      {t:'arr',v:'AI-NATIVE — AI bukan tools, AI adalah cara kerja'},
-      {t:'arr',v:'LOW BARRIER — Harga terjangkau, akses luas'},
+      {t:'arr',v:'AI-NATIVE — AI bukan tools, AI adalah cara kerja utama'},
+      {t:'arr',v:'LOW BARRIER — Harga terjangkau, akses luas, no gatekeeping'},
       {t:'arr',v:'IDENTITY-LED — Personal branding adalah fondasi segalanya'},
     ]},
-    {h:'🗣 TONE KOMUNIKASI',l:[
-      {t:'hd',v:'DO'},
+    {h:'🎭 BRAND PERSONALITY & TONE',l:[
+      {t:'hd',v:'BRAND PERSONALITY'},
+      {t:'arr',v:'Usia 24 tahun, lulusan self-taught, kerja dari laptop'},
+      {t:'arr',v:'Penghasilan udah 7 digit — tapi tetap humble dan relatable'},
+      {t:'arr',v:'Aesthetic: dark mode, minimalis, typeface clean, no bullshit'},
+      {t:'hd',v:'TONE — DO'},
       {t:'arr',v:'"Kamu udah bisa mulai hari ini, modal HP aja"'},
-      {t:'arr',v:'"Ini sistem yang kami pakai — bukan teori"'},
-      {t:'hd',v:"DON'T"},
+      {t:'arr',v:'"Ini sistem yang kami pakai — bukan teori random"'},
+      {t:'hd',v:"TONE — DON'T"},
       {t:'no',v:'"Raih kesuksesan impianmu bersama kami!"'},
-      {t:'no',v:'"Daftar sekarang sebelum terlambat!!!"'},
-      {t:'no',v:'Bahasa corporate, motivasi klise, emoji berlebihan'},
+      {t:'no',v:'"Daftar sekarang sebelum terlambat!!!" + emoji berlebihan'},
     ]},
   ],
   biz:[
     {h:'🏗 MODEL BISNIS',l:[
       {t:'bold',v:'Agency-as-a-System + Digital Product Hybrid'},
       {t:'sp'},
-      {t:'arr',v:'Revenue dari jasa (customized, langsung bayar)'},
+      {t:'arr',v:'Revenue dari jasa Done-For-You (customized, langsung bayar)'},
       {t:'arr',v:'Revenue dari produk digital (template, guide, course)'},
       {t:'arr',v:'Revenue dari community membership (recurring)'},
       {t:'sp'},
       {t:'hi',v:'Cashflow dari jasa (cepat) + pertumbuhan dari produk (scalable)'},
     ]},
-    {h:'💰 REVENUE STREAMS',l:[
-      {t:'hd',v:'STREAM 1 — DONE-FOR-YOU SERVICE'},
-      {t:'arr',v:'Margin tinggi, cashflow cepat'},
-      {t:'arr',v:'Target: 60% revenue bulan 1-3'},
-      {t:'hd',v:'STREAM 2 — DIGITAL PRODUCTS'},
-      {t:'arr',v:'Template, toolkit, guidebook — Margin 95%, passive'},
-      {t:'arr',v:'Target: 25% revenue bulan 3-6'},
-      {t:'hd',v:'STREAM 3 — COMMUNITY MEMBERSHIP'},
-      {t:'arr',v:'Akses grup premium, weekly session — Recurring income'},
-      {t:'arr',v:'Target: 15% revenue bulan 4+'},
-      {t:'hd',v:'STREAM 4 — PARTNERSHIP & AFFILIATE'},
-      {t:'arr',v:'Rekomendasikan tools, dapat komisi'},
-      {t:'arr',v:'Target: mulai bulan 6+'},
+    {h:'💰 4 REVENUE STREAMS',l:[
+      {t:'hd',v:'STREAM 1 — DONE-FOR-YOU SERVICE (Bulan 1-3)'},
+      {t:'arr',v:'Margin tinggi, cashflow cepat, target 60% revenue'},
+      {t:'hd',v:'STREAM 2 — DIGITAL PRODUCTS (Bulan 3-6)'},
+      {t:'arr',v:'Template, toolkit, guidebook — Margin 95%, passive income'},
+      {t:'hd',v:'STREAM 3 — COMMUNITY MEMBERSHIP (Bulan 4+)'},
+      {t:'arr',v:'Rp99rb/bulan — Recurring, predictable income'},
+      {t:'hd',v:'STREAM 4 — PARTNERSHIP & AFFILIATE (Bulan 6+)'},
+      {t:'arr',v:'Rekomendasikan tools & services, dapat komisi 15-20%'},
     ]},
-    {h:'💵 PRICING STRATEGY',l:[
-      {t:'bold',v:'Anchoring + Value Ladder'},
-      {t:'sp'},
-      {t:'hi',v:'Entry: Rp75.000–150.000 → Mudah diakses'},
+    {h:'💵 PRICING & PRODUCT LADDER',l:[
+      {t:'hd',v:'ANCHORING + VALUE LADDER'},
+      {t:'hi',v:'Entry: Rp75.000–150.000 → Mudah diakses, experience value'},
       {t:'hi',v:'Core: Rp350.000–750.000 → Sweet spot margin & volume'},
       {t:'hi',v:'Premium: Rp1.500.000–3.500.000 → High-touch, high-value'},
-      {t:'sp'},
-      {t:'arr',v:'Selalu tunjukkan harga "normal" dicoret'},
-      {t:'arr',v:'Bundle lebih baik dari diskon langsung'},
-      {t:'arr',v:'Garansi revisi = kepercayaan tanpa risiko besar'},
-    ]},
-    {h:'📈 PRODUCT LADDER & UPSELL',l:[
       {t:'hd',v:'UPSELL PATH'},
-      {t:'arr',v:'[Entry: Identity Audit] → [Core: Identity Build] → [Premium: Full Upgrade System]'},
-      {t:'hd',v:'CROSS-SELL'},
-      {t:'arr',v:'Beli Identity Build → ditawarkan Skill Toolkit'},
-      {t:'arr',v:'Semua produk → ditawarkan UGRADE Community (recurring Rp99rb/bln)'},
-      {t:'hd',v:'RETENTION'},
-      {t:'arr',v:'Setelah selesai, customer masuk nurture sequence'},
-      {t:'arr',v:'Tiap bulan ada "upgrade report" — reminder level berikutnya'},
+      {t:'arr',v:'Identity Audit → Identity Build → Full Upgrade System'},
+      {t:'arr',v:'Semua produk → UGRADE Community (Rp99rb/bulan)'},
     ]},
   ],
   prod:[
     {h:'🥉 ENTRY — Identity Audit (Rp75.000)',l:[
       {t:'hd',v:'ISI LAYANAN'},
-      {t:'arr',v:'Audit digital presence (IG, LinkedIn, Twitter/X, Telegram)'},
-      {t:'arr',v:'Identity Score (1-100) dengan breakdown per kategori'},
-      {t:'arr',v:'3 rekomendasi spesifik yang bisa langsung dieksekusi'},
-      {t:'arr',v:'Delivered: PDF branded 3–5 halaman via Telegram DM'},
+      {t:'arr',v:'Audit digital presence: IG, LinkedIn, Twitter/X, Telegram'},
+      {t:'arr',v:'Identity Score (1-100) dengan breakdown 4 aspek'},
+      {t:'arr',v:'3 rekomendasi spesifik yang bisa dieksekusi hari ini'},
+      {t:'arr',v:'PDF branded 3–5 halaman, delivered via Telegram DM'},
       {t:'hd',v:'DELIVERY SYSTEM'},
-      {t:'arr',v:'Customer isi form → AI proses (15 menit) → Human review (10 menit) → Kirim'},
+      {t:'arr',v:'Customer DM admin → isi data → AI proses 15 menit'},
+      {t:'arr',v:'Human review 10 menit → PDF delivered dalam 24 jam'},
       {t:'sp'},
-      {t:'hi',v:'Waktu kerja nyata: 25 menit/customer — Margin: ~90%'},
+      {t:'hi',v:'Waktu kerja nyata: 25 menit/order — Margin: ~90%'},
     ]},
     {h:'🥈 CORE — Identity + Skill Build (Rp350K–650K)',l:[
-      {t:'hd',v:'IDENTITY BUILD'},
+      {t:'hd',v:'IDENTITY BUILD — ISI'},
       {t:'arr',v:'Redesign bio & profile semua platform'},
       {t:'arr',v:'AI-generated personal brand statement (3 versi)'},
       {t:'arr',v:'Color palette & font guide personal'},
-      {t:'arr',v:'Template konten 30 hari (10 template siap pakai)'},
+      {t:'arr',v:'30 template konten siap pakai (sesuai niche kamu)'},
       {t:'arr',v:'PDF Brand Guidebook personal'},
-      {t:'hd',v:'SKILL BUILD'},
-      {t:'arr',v:'Assessment skill gaps (form + AI analysis)'},
+      {t:'hd',v:'SKILL BUILD — ISI'},
+      {t:'arr',v:'Assessment skill gaps + AI analysis'},
       {t:'arr',v:'Custom learning roadmap 30 hari'},
-      {t:'arr',v:'5 prompt AI siap pakai + Resource list terbaik'},
-      {t:'hd',v:'PROSES'},
-      {t:'arr',v:'Hari 1: Intake → Hari 1-2: Processing → Hari 3: Delivery + voice note → Hari 7: Follow-up'},
+      {t:'arr',v:'5 prompt AI siap pakai + resource list terbaik'},
+      {t:'hd',v:'TIMELINE'},
+      {t:'arr',v:'Hari 1: Intake → Hari 1-2: Processing → Hari 3: Delivery + voice note'},
+      {t:'arr',v:'Hari 7: Follow-up check-in otomatis'},
     ]},
-    {h:'🥇 PREMIUM — Full Upgrade System (Rp1.75JT/bulan)',l:[
-      {t:'hd',v:'ALL-IN-ONE'},
+    {h:'🥇 PREMIUM — Full Upgrade System (Rp1.750.000/bln)',l:[
+      {t:'hd',v:'ALL-IN-ONE PACKAGE'},
       {t:'arr',v:'Semua dari Identity Build + Skill Build'},
       {t:'arr',v:'Income Blueprint: 3 peluang income dari skill & interest kamu'},
       {t:'arr',v:'1:1 Review Session via Telegram (2x/bulan, 45 menit)'},
-      {t:'arr',v:'Implementation support Q&A chat 5x/minggu'},
+      {t:'arr',v:'Implementation support Q&A 5x/minggu'},
       {t:'arr',v:'Weekly progress report (AI-generated, human-reviewed)'},
-      {t:'arr',v:'Portfolio mini: 1 halaman Notion atau Carrd'},
+      {t:'arr',v:'Portfolio mini: Notion atau Carrd page'},
       {t:'arr',v:'Intro ke 1 potential client/partner dari network UGRADE'},
       {t:'sp'},
-      {t:'hi',v:'7–10 deliverables total — Retention target: 40% lanjut bulan ke-2'},
+      {t:'hi',v:'7–10 deliverables total — Retention target: 40% lanjut bulan 2'},
     ]},
   ],
   jour:[
@@ -718,307 +674,318 @@ const D={
     {h:'TAHAP 2 — CONSIDERATION',l:[
       {t:'arr',v:'Join channel → baca konten lama → lihat hasil klien'},
       {t:'arr',v:'Kunci: Social proof (before/after, testimoni, hasil nyata)'},
-      {t:'sp'},{t:'hi',v:'CTA: "Audit identity kamu — Rp75rb, delivered 24 jam"'},
+      {t:'sp'},{t:'hi',v:'CTA utama: "Audit identity kamu — Rp75rb, 24 jam selesai"'},
     ]},
     {h:'TAHAP 3 — PURCHASE',l:[
-      {t:'arr',v:'Klik link → form → transfer → konfirmasi otomatis'},
+      {t:'arr',v:'Tap tombol order → isi form → redirect ke DM @ugradeone'},
+      {t:'arr',v:'Admin reply dalam 1 jam, konfirmasi pembayaran'},
       {t:'hd',v:'FRICTION REDUCER'},
-      {t:'arr',v:'Harga tertera jelas di semua tempat'},
-      {t:'arr',v:'Contoh output tersedia untuk dilihat'},
+      {t:'arr',v:'Harga tertera jelas, tidak ada biaya tersembunyi'},
+      {t:'arr',v:'Contoh output tersedia untuk dilihat sebelum beli'},
       {t:'arr',v:'Garansi revisi 1x tanpa pertanyaan'},
     ]},
-    {h:'TAHAP 4 — DELIVERY',l:[
-      {t:'arr',v:'Konfirmasi order otomatis (<5 menit)'},
-      {t:'arr',v:'Update progress hari 1 pengerjaan'},
-      {t:'arr',v:'Preview draft sebelum final'},
-      {t:'arr',v:'Delivery + voice note penjelasan'},
-      {t:'arr',v:'Follow-up check-in hari 7 setelah delivery'},
-    ]},
-    {h:'TAHAP 5 — REPEAT & REFERRAL',l:[
-      {t:'hd',v:'UPSELL'},
-      {t:'arr',v:'Setelah entry → tawarkan core dalam delivery message'},
-      {t:'hd',v:'REFERRAL'},
-      {t:'arr',v:'Refer 1 teman yang beli → dapat Rp75rb credit'},
-      {t:'hd',v:'COMMUNITY'},
+    {h:'TAHAP 4 — DELIVERY & TAHAP 5 — REPEAT',l:[
+      {t:'hd',v:'DELIVERY TOUCHPOINTS'},
+      {t:'arr',v:'Konfirmasi order (otomatis, <5 menit setelah bayar)'},
+      {t:'arr',v:'Update progress hari pertama pengerjaan'},
+      {t:'arr',v:'Delivery file + voice note penjelasan cara pakai'},
+      {t:'arr',v:'Follow-up check-in hari ke-7 setelah delivery'},
+      {t:'hd',v:'REPEAT & REFERRAL'},
+      {t:'arr',v:'Upsell natural dalam pesan delivery'},
+      {t:'arr',v:'Referral: "Refer 1 teman → dapat Rp75rb credit"'},
       {t:'arr',v:'Invite ke UGRADE Community (Rp99rb/bulan)'},
     ]},
   ],
   ops:[
-    {h:'📥 SOP 1 — Menerima Order',l:[
-      {t:'arr',v:'Customer klik link → isi Tally Form (nama, usia, goal, platform, screenshot)'},
-      {t:'arr',v:'Tally auto-kirim notif ke Telegram via Make.com'},
-      {t:'arr',v:'Cek form dalam 1 jam dari notif masuk'},
-      {t:'arr',v:'Balas konfirmasi: "Order diterima! Estimasi selesai [waktu]."'},
-      {t:'arr',v:'Masukkan ke Notion tracker (database customer)'},
-      {t:'sp'},{t:'hi',v:'Tools: Tally.so + Notion + Telegram Bot (semua gratis)'},
+    {h:'📥 SOP 1 — Alur Order Masuk',l:[
+      {t:'arr',v:'Customer tap tombol order di web → isi form → redirect ke DM @ugradeone'},
+      {t:'arr',v:'Pesan otomatis terkirim: nama, produk, goal customer'},
+      {t:'arr',v:'Admin (kamu) reply dalam 1 jam: konfirmasi & info pembayaran'},
+      {t:'arr',v:'Setelah bayar → masukkan ke Notion tracker'},
+      {t:'sp'},{t:'hi',v:'Semua order MASUK KE DM @ugradeone — bukan channel publik'},
     ]},
     {h:'🔍 SOP 2 — Analisis Customer (Prompt Internal)',l:[
-      {t:'text',v:'"Kamu adalah konsultan identity & personal branding.'},
-      {t:'text',v:'Analisis profil: Nama: [nama] | Usia: [usia] | Platform: [list] | Bio: [copy] | Goal: [goal]'},
+      {t:'text',v:'"Kamu adalah konsultan identity & personal branding senior.'},
+      {t:'text',v:'Analisis profil ini:'},
+      {t:'arr',v:'Nama: [nama] | Usia: [usia] | Platform: [list]'},
+      {t:'arr',v:'Bio saat ini: [copy bio] | Goal: [goal customer]'},
       {t:'sp'},
-      {t:'arr',v:'Identity Score (1-100) dengan breakdown per aspek'},
-      {t:'arr',v:'3 kekuatan utama + 3 kelemahan kritis'},
-      {t:'arr',v:'5 rekomendasi spesifik & actionable'},
-      {t:'arr',v:'Tone of voice yang cocok'},
-      {t:'text',v:'Format: JSON" '},
+      {t:'text',v:'Output yang dibutuhkan:'},
+      {t:'arr',v:'Identity Score (1-100): Clarity/Consistency/Authority/Magnetism (25pts each)'},
+      {t:'arr',v:'3 kekuatan utama + 3 kelemahan kritis dengan contoh spesifik'},
+      {t:'arr',v:'5 rekomendasi actionable yang bisa dieksekusi segera'},
+      {t:'arr',v:'Tone of voice yang cocok untuk mereka'},
+      {t:'text',v:'Bahasa: Indonesia, casual tapi substantif, tidak menggurui"'},
     ]},
     {h:'✅ SOP 3 — QC Checklist Sebelum Deliver',l:[
       {t:'hd',v:'IDENTITY AUDIT'},
       {t:'cb',v:'Score dijelaskan dengan contoh konkret dari profil mereka'},
-      {t:'cb',v:'Rekomendasi spesifik (bukan template generik)'},
+      {t:'cb',v:'Rekomendasi spesifik (bukan generik / template)'},
       {t:'cb',v:'Nama customer benar di semua halaman PDF'},
-      {t:'cb',v:'Branding UGRADE konsisten di seluruh dokumen'},
+      {t:'cb',v:'Branding UGRADE konsisten, tidak ada typo'},
       {t:'hd',v:'IDENTITY / SKILL BUILD'},
-      {t:'cb',v:'Semua deliverable sesuai yang dijanjikan di awal'},
-      {t:'cb',v:'Personalisasi terasa — bukan template mentah'},
-      {t:'cb',v:'Bahasa sesuai usia & tone customer'},
-      {t:'cb',v:'Semua link/resource bisa diakses'},
-      {t:'cb',v:'Ada next step yang jelas untuk customer'},
+      {t:'cb',v:'Semua deliverable sesuai yang dijanjikan di sales message'},
+      {t:'cb',v:'Personalisasi terasa — bukan template mentah yang di-copy paste'},
+      {t:'cb',v:'Bahasa dan tone sesuai usia & karakter customer'},
+      {t:'cb',v:'Semua link/resource bisa diakses dan aktif'},
+      {t:'cb',v:'Ada next step yang jelas + soft upsell di bagian akhir'},
     ]},
-    {h:'📦 SOP 4 — Template Pesan Delivery',l:[
+    {h:'📦 SOP 4 — Template Pesan Delivery ke Customer',l:[
       {t:'text',v:'"Hei [Nama]! ✓'},
       {t:'sp'},
       {t:'text',v:'[Nama produk] kamu udah selesai dikerjain 🎉'},
       {t:'sp'},
       {t:'text',v:'Ini deliverables kamu:'},
-      {t:'arr',v:'[Link/File 1]'},
-      {t:'arr',v:'[Link/File 2]'},
+      {t:'arr',v:'[Link/File 1 — contoh: PDF Identity Audit]'},
+      {t:'arr',v:'[Link/File 2 — contoh: Brand Guidebook]'},
       {t:'sp'},
       {t:'text',v:'[Voice note 2–3 menit: penjelasan hasil & cara pakai]'},
       {t:'sp'},
-      {t:'text',v:'Next step: [upsell natural]'},
+      {t:'text',v:'Kalau ada yang mau direvisi, langsung reply di sini ya.'},
       {t:'sp'},
-      {t:'text',v:'— Tim UGRADE"'},
-      {t:'sp'},{t:'hi',v:'Delivery maks: 48 jam dari order dikonfirmasi'},
+      {t:'text',v:'Next step yang kami rekomendasiin: [upsell natural ke core/premium]'},
+      {t:'sp'},
+      {t:'text',v:'— Tim UGRADE (@ugradeone)"'},
+      {t:'sp'},{t:'hi',v:'Delivery maks: 48 jam dari pembayaran dikonfirmasi'},
     ]},
   ],
   ai:[
     {h:'🔄 Master AI Workflow',l:[
-      {t:'hd',v:'FLOW UTAMA'},
-      {t:'arr',v:'Customer Input → AI Pre-Processing (5 mnt)'},
-      {t:'arr',v:'→ AI Main Processing (15–30 mnt)'},
-      {t:'arr',v:'→ Human Review (10–20 mnt)'},
-      {t:'arr',v:'→ Final Polish (10 mnt) → Delivery'},
-      {t:'hd',v:'STEP 1 — PRE-PROCESSING'},
-      {t:'arr',v:'Tools: ChatGPT-4o'},
-      {t:'arr',v:'Rangkum data customer → brief terstruktur (JSON)'},
-      {t:'hd',v:'STEP 2 — MAIN PROCESSING'},
-      {t:'arr',v:'Claude Sonnet → analisis mendalam & copywriting'},
-      {t:'arr',v:'ChatGPT-4o → konten kreatif & variasi template'},
-      {t:'arr',v:'Gemini → research & fact-check'},
-      {t:'hd',v:'STEP 3 — HUMAN REVIEW'},
-      {t:'arr',v:'Cek personalisasi, hapus yang generik'},
-      {t:'arr',v:'Kunci: "Apakah ini dibuat khusus untuk orang ini?"'},
+      {t:'hd',v:'FLOW UTAMA (per order)'},
+      {t:'arr',v:'1. Customer DM → Admin terima & catat brief'},
+      {t:'arr',v:'2. AI Pre-Processing: ChatGPT-4o rangkum data jadi JSON brief (5 mnt)'},
+      {t:'arr',v:'3. AI Main Processing: generate semua draft deliverables (15-30 mnt)'},
+      {t:'arr',v:'4. Human Review: personalisasi, hapus yang generik (10-20 mnt)'},
+      {t:'arr',v:'5. Final Polish: format di Canva/Notion, branding (10 mnt)'},
+      {t:'arr',v:'6. Delivery via Telegram DM + voice note penjelasan'},
     ]},
-    {h:'🛠 Tools Stack (Semua Gratis/Murah)',l:[
-      {t:'hd',v:'WAJIB (~Rp320k/bulan)'},
-      {t:'arr',v:'ChatGPT Plus: $20/bulan — core processing tool (satu-satunya pengeluaran inti)'},
-      {t:'hd',v:'GRATIS'},
-      {t:'arr',v:'Claude.ai free tier — backup & review'},
-      {t:'arr',v:'Canva Free — PDF & visual deliverables'},
-      {t:'arr',v:'Notion Free — CRM, dokumen, delivery'},
-      {t:'arr',v:'Tally.so Free — form intake customer'},
-      {t:'arr',v:'Telegram — channel + komunikasi + bot'},
-      {t:'arr',v:'Make.com Free (500 ops/bulan) — automation'},
-      {t:'arr',v:'Google Drive — storage & share file'},
-      {t:'arr',v:'Loom Free — voice/video notes delivery'},
+    {h:'🛠 Tools Stack Lengkap',l:[
+      {t:'hd',v:'WAJIB (Rp320k/bulan)'},
+      {t:'arr',v:'ChatGPT Plus ($20/bln) — core AI processing, satu-satunya biaya rutin'},
+      {t:'hd',v:'GRATIS SELAMANYA'},
+      {t:'arr',v:'Claude.ai free tier — analisis mendalam & copywriting quality'},
+      {t:'arr',v:'Canva Free — semua PDF, visual, dan deliverable branded'},
+      {t:'arr',v:'Notion Free — CRM customer, tracker order, semua dokumen'},
+      {t:'arr',v:'Tally.so Free — form intake customer (alternatif Google Form)'},
+      {t:'arr',v:'Telegram — channel broadcast + DM @ugradeone + bot FAQ'},
+      {t:'arr',v:'Make.com Free (500 ops/bln) — automation notif & workflow'},
+      {t:'arr',v:'Google Drive — storage file & link pengiriman deliverable'},
+      {t:'arr',v:'Loom Free — rekam voice note/video untuk delivery penjelasan'},
     ]},
-    {h:'📝 Master Prompt — Identity Audit',l:[
-      {t:'text',v:'"Kamu adalah digital identity consultant level senior.'},
-      {t:'text',v:'Customer: [DATA CUSTOMER]'},
+    {h:'📝 Prompt Master — Identity Audit',l:[
+      {t:'text',v:'"Kamu adalah digital identity consultant level senior dengan 10 tahun pengalaman.'},
+      {t:'text',v:'Buat laporan Identity Audit untuk customer berikut: [DATA CUSTOMER]'},
       {t:'sp'},
-      {t:'text',v:'Buat laporan Identity Audit:'},
-      {t:'arr',v:'Identity Score (0-100): Clarity (25) / Consistency (25) / Authority (25) / Magnetism (25)'},
-      {t:'arr',v:'Jelaskan score per aspek dengan 1 contoh spesifik dari profil mereka'},
-      {t:'arr',v:'3 quick wins yang bisa dilakukan dalam 48 jam'},
-      {t:'arr',v:'3 perubahan strategis untuk 30 hari ke depan'},
-      {t:'arr',v:'1 personal brand statement yang powerful'},
-      {t:'text',v:'Bahasa: Indonesia, casual tapi profesional, tidak menggurui"'},
+      {t:'text',v:'Format laporan:'},
+      {t:'arr',v:'Identity Score (0-100) dengan rubrik 4 aspek (masing-masing 25pts):'},
+      {t:'arr',v:'  → Clarity: seberapa jelas identity & niche mereka'},
+      {t:'arr',v:'  → Consistency: konsistensi visual & pesan di semua platform'},
+      {t:'arr',v:'  → Authority: seberapa expert mereka terlihat di bidangnya'},
+      {t:'arr',v:'  → Magnetism: daya tarik & kemampuan menarik audiens target'},
+      {t:'arr',v:'Jelaskan setiap score dengan 1 contoh spesifik dari profil mereka'},
+      {t:'arr',v:'3 quick wins yang bisa dilakukan dalam 48 jam tanpa modal'},
+      {t:'arr',v:'3 perubahan strategis jangka panjang (30 hari ke depan)'},
+      {t:'arr',v:'1 personal brand statement yang powerful (max 2 kalimat)'},
+      {t:'text',v:'Tone: Indonesia, casual tapi profesional, tidak menggurui, to the point"'},
     ]},
   ],
   mktg:[
     {h:'📡 Strategi Telegram (Primary Channel)',l:[
-      {t:'hd',v:'STRUKTUR CHANNEL'},
-      {t:'arr',v:'1 Channel utama: @UGRADE_ID (broadcast konten)'},
-      {t:'arr',v:'1 Group: UGRADE Community (berbayar, Rp99rb/bulan)'},
-      {t:'arr',v:'Bot Telegram: auto-reply & FAQ'},
+      {t:'hd',v:'STRUKTUR YANG DIBUTUHKAN'},
+      {t:'arr',v:'Channel @UGRADE_ID — broadcast konten harian (publik)'},
+      {t:'arr',v:'Group UGRADE Community — berbayar Rp99rb/bulan (private)'},
+      {t:'arr',v:'DM @ugradeone — semua order & customer service masuk sini'},
       {t:'hd',v:'CONTENT CALENDAR MINGGUAN'},
-      {t:'arr',v:'Senin → Analisis/insight'},
-      {t:'arr',v:'Selasa → Tutorial/how-to (step by step)'},
-      {t:'arr',v:'Rabu → Before/After hasil klien'},
-      {t:'arr',v:'Kamis → Tools/Resources AI gratis'},
-      {t:'arr',v:'Jumat → Case Study atau Story'},
-      {t:'arr',v:'Sabtu → Promo/CTA (soft sell)'},
-      {t:'arr',v:'Minggu → Reflection/Mindset (shareable)'},
-      {t:'hd',v:'FORMAT KONTEN FACELESS'},
-      {t:'arr',v:'Screenshot teks (hitam/putih, minimal)'},
-      {t:'arr',v:'Infografis sederhana (Canva template)'},
-      {t:'arr',v:'Data & statistik (lebih dipercaya dari opini)'},
+      {t:'arr',v:'Senin → Analisis/insight (data, fakta, statistic)'},
+      {t:'arr',v:'Selasa → Tutorial/how-to (step by step, bisa langsung dipraktekkan)'},
+      {t:'arr',v:'Rabu → Before/After hasil klien (social proof terkuat)'},
+      {t:'arr',v:'Kamis → Tools/Resources AI gratis yang berguna'},
+      {t:'arr',v:'Jumat → Case Study atau Story (tanpa nama, tapi relatable)'},
+      {t:'arr',v:'Sabtu → Soft promo + CTA (buka slot minggu ini)'},
+      {t:'arr',v:'Minggu → Mindset/reflection (engagement & shareable)'},
+      {t:'hd',v:'FORMAT KONTEN FACELESS (tanpa show wajah)'},
+      {t:'arr',v:'Screenshot teks hitam/putih dengan layout minimalis'},
+      {t:'arr',v:'Infografis sederhana dari Canva template'},
+      {t:'arr',v:'Data & statistik — lebih dipercaya dari pendapat pribadi'},
     ]},
-    {h:'🤝 Strategi Komunitas',l:[
-      {t:'hd',v:'TARGET KOMUNITAS'},
-      {t:'arr',v:'Group Telegram bisnis & freelance'},
-      {t:'arr',v:'Discord komunitas desainer & kreator muda'},
-      {t:'arr',v:'Reddit r/indonesia, r/remotework'},
-      {t:'arr',v:'Komunitas Dicoding, BuildWith Angga, dsb.'},
-      {t:'hd',v:'PLAYBOOK KOMUNITAS'},
-      {t:'arr',v:'Minggu 1–2: Lurk & observe, cari pain points utama'},
-      {t:'arr',v:'Minggu 3: Mulai berkontribusi (jawab pertanyaan)'},
-      {t:'arr',v:'Minggu 4: Soft mention UGRADE saat relevan'},
-      {t:'arr',v:'Ongoing: Jadilah resource person, bukan spammer'},
-    ]},
-    {h:'🔗 Referral System — UPGRADE BARENG',l:[
-      {t:'arr',v:'Setiap customer dapat kode referral unik'},
-      {t:'arr',v:'Refer 1 orang yang beli → dapat Rp75rb credit'},
+    {h:'🤝 Strategi Komunitas & Referral',l:[
+      {t:'hd',v:'TARGET KOMUNITAS (join & engage dulu)'},
+      {t:'arr',v:'Group Telegram: bisnis, freelance, desainer, kreator muda'},
+      {t:'arr',v:'Discord: komunitas developer, desainer, konten kreator'},
+      {t:'arr',v:'Forum: Reddit r/indonesia, r/remotework'},
+      {t:'arr',v:'Platform lokal: Dicoding, BuildWith Angga, Kelas.work'},
+      {t:'hd',v:'PLAYBOOK 4 MINGGU'},
+      {t:'arr',v:'Minggu 1-2: Lurk, observe, cari pain points yang sering muncul'},
+      {t:'arr',v:'Minggu 3: Mulai berkontribusi aktif — jawab pertanyaan, beri value'},
+      {t:'arr',v:'Minggu 4: Soft mention UGRADE hanya saat sangat relevan'},
+      {t:'hd',v:'REFERRAL PROGRAM — UPGRADE BARENG'},
+      {t:'arr',v:'Refer 1 orang beli → dapat Rp75rb credit untuk order berikutnya'},
       {t:'arr',v:'Refer 3 orang → dapat 1 session gratis (nilai Rp350rb)'},
-      {t:'arr',v:'Refer 5 orang dalam 1 bulan → komisi 15% ongoing'},
-      {t:'sp'},{t:'hi',v:'Tracking: Notion + kode unik manual → lalu otomasi Make.com'},
+      {t:'arr',v:'Refer 5 orang/bulan → jadi affiliate dengan komisi 15% ongoing'},
     ]},
   ],
   sales:[
-    {h:'💬 DM Template — Cold Outbound',l:[
-      {t:'hd',v:'TEMPLATE 1 — COLD DM'},
+    {h:'💬 DM Template — Cold & Warm Outbound',l:[
+      {t:'hd',v:'TEMPLATE 1 — COLD DM (ke orang baru)'},
       {t:'text',v:'"Hei [Nama],'},
       {t:'sp'},
-      {t:'text',v:'Gue lihat profil kamu — kamu [observasi spesifik tentang profil].'},
+      {t:'text',v:'Gue lihat profil kamu — ada 1 hal yang kalau diubah bisa bikin kesan pertama kamu jauh lebih kuat di mata klien/rekruter.'},
       {t:'sp'},
-      {t:'text',v:'Ada 1 hal kecil yang kalau diubah, bisa bikin kesan pertama kamu jauh lebih kuat di mata klien/rekruter/audiens.'},
+      {t:'text',v:'Boleh gue kasih tahu? Gratis, 2 menit aja.'},
       {t:'sp'},
-      {t:'text',v:'Kalau mau, gue bisa kasih tahu — gratis, 2 menit aja.'},
+      {t:'text',v:'— [inisial], UGRADE"'},
+      {t:'hd',v:'TEMPLATE 2 — WARM (setelah engage di komunitas)'},
+      {t:'text',v:'"Hei [Nama], kemarin kamu nanya soal [topik] di [grup].'},
       {t:'sp'},
-      {t:'text',v:'— [nama/inisial], UGRADE"'},
+      {t:'text',v:'Gue punya resource spesifik buat situasi kamu — boleh gue kirim? Ini dari sistem yang kami pakai di UGRADE."'},
     ]},
-    {h:'📋 Sales Script — Alur Closing',l:[
-      {t:'hd',v:'1. HOOK'},
-      {t:'arr',v:'"Gue liat [hal spesifik] — ini biasanya yang bikin orang susah dapet klien/followers."'},
-      {t:'hd',v:'2. PROBLEM (validasi pain)'},
-      {t:'arr',v:'"Ini sering terjadi? Udah berapa lama ngerasa stuck di sini?"'},
-      {t:'hd',v:'3. SOLUTION'},
+    {h:'📋 Sales Script — 5 Langkah Closing',l:[
+      {t:'hd',v:'1. HOOK — buka dengan observasi spesifik'},
+      {t:'arr',v:'"Gue liat [hal konkret di profil mereka] — ini biasanya yang bikin orang susah dapet klien."'},
+      {t:'hd',v:'2. PROBLEM — validasi pain mereka'},
+      {t:'arr',v:'"Ini sering kejadian? Udah berapa lama ngerasa stuck di sini?"'},
+      {t:'hd',v:'3. SOLUTION — tunjukkan ada jalan keluar'},
       {t:'arr',v:'"Ada 3 hal yang perlu diubah. Dua bisa kamu lakuin sendiri, tapi yang ketiga butuh sistem."'},
-      {t:'hd',v:'4. OFFER'},
-      {t:'arr',v:'"Gue bisa buatin Identity Audit lengkap — Rp75rb, selesai 24 jam."'},
-      {t:'hd',v:'5. CLOSE'},
-      {t:'arr',v:'"Mau gue kirim link formnya sekarang?"'},
+      {t:'hd',v:'4. OFFER — spesifik dan rendah risiko'},
+      {t:'arr',v:'"Gue bisa buatin Identity Audit lengkap — Rp75rb, selesai 24 jam. Kamu langsung tau prioritas perubahan pertama."'},
+      {t:'hd',v:'5. CLOSE — buat semudah mungkin'},
+      {t:'arr',v:'"Mau gue kirim link order-nya sekarang?"'},
     ]},
-    {h:'🛡 Objection Handling',l:[
-      {t:'hd',v:'OBJEKSI: "MAHAL / NGGAK ADA BUDGET"'},
-      {t:'text',v:'"Makanya kami buat entry point Rp75rb — harga 2x makan siang. Kalau hasilnya bantu kamu dapat 1 klien aja, langsung balik modalnya. Mau coba yang paling terjangkau dulu?"'},
-      {t:'hd',v:'OBJEKSI: "MASIH PIKIR-PIKIR"'},
-      {t:'text',v:'"Boleh. Sambil pikir-pikir, boleh gue kasih 1 insight gratis soal profil kamu? Biar kamu punya referensi konkret."'},
-      {t:'hd',v:'OBJEKSI: "NGGAK PERCAYA"'},
-      {t:'text',v:'"Wajar. Ini beberapa hasil yang kami kerjain [tunjukkan before/after]. Bisa mulai dari Audit dulu — kecil, cepat, kamu nilai sendiri kualitasnya."'},
+    {h:'🛡 Objection Handling — 4 Keberatan Umum',l:[
+      {t:'hd',v:'"MAHAL / NGGAK ADA BUDGET"'},
+      {t:'text',v:'"Makanya kami buat entry point Rp75rb — harga 2x makan siang. Kalau hasilnya bantu kamu dapet 1 klien aja, langsung balik modal. Coba yang entry dulu?"'},
+      {t:'hd',v:'"MASIH PIKIR-PIKIR DULU"'},
+      {t:'text',v:'"Boleh banget. Sambil pikir-pikir, boleh gue kasih 1 insight gratis soal profil kamu? Biar ada referensi konkret."'},
+      {t:'hd',v:'"TAKUT HASILNYA NGGAK SESUAI"'},
+      {t:'text',v:'"Ada garansi revisi 1x — kalau deliverable pertama belum sesuai ekspektasi, kami revisi sampai oke. Zero risk dari sisi kamu."'},
+      {t:'hd',v:'"NGGAK KENAL / NGGAK PERCAYA"'},
+      {t:'text',v:'"Wajar banget. Ini beberapa hasil yang sudah kami kerjain [tunjukkan 2-3 before/after]. Mau mulai dari Audit dulu? Kecil, cepat, kamu bisa nilai sendiri kualitasnya."'},
     ]},
   ],
   days:[
     {h:'📅 HARI 1–7: Setup Foundation',l:[
       {t:'hd',v:'HARI 1 (Budget: Rp150.000)'},
-      {t:'cb',v:'Daftarkan channel Telegram: @UGRADE_ID'},
-      {t:'cb',v:'Setup Notion workspace: 3 database (Customer, Order, Content)'},
-      {t:'cb',v:'Buat akun Tally.so, Canva, Loom'},
+      {t:'cb',v:'Setup channel Telegram @UGRADE_ID + aktifkan DM @ugradeone'},
+      {t:'cb',v:'Setup Notion workspace: database Customer, Order, Content'},
+      {t:'cb',v:'Buat akun Tally.so, Canva Free, Loom Free'},
+      {t:'cb',v:'Draft brand kit: warna (hitam + hijau), font, bio channel'},
       {t:'hd',v:'HARI 2'},
-      {t:'cb',v:'Buat intake form di Tally untuk Identity Audit'},
-      {t:'cb',v:'Setup Telegram channel: foto, bio, pinned message'},
-      {t:'cb',v:'Buat 5 konten pertama + 1 sample output (fiktif = portofolio)'},
+      {t:'cb',v:'Buat 1 sample Identity Audit (fiktif) sebagai portofolio awal'},
+      {t:'cb',v:'Setup channel Telegram: foto, bio, pinned message pertama'},
+      {t:'cb',v:'Buat 5 template konten pertama di Canva'},
       {t:'hd',v:'HARI 3–4'},
-      {t:'cb',v:'Setup Make.com automation: Tally → Notion → Telegram notif'},
-      {t:'cb',v:'Join 5–10 komunitas target'},
-      {t:'cb',v:'Beli ChatGPT Plus (investasi inti — tidak bisa ditunda)'},
+      {t:'cb',v:'Beli ChatGPT Plus — ini satu-satunya investasi yang tidak bisa ditunda'},
+      {t:'cb',v:'Setup Make.com automation: form → Notion → notif Telegram'},
+      {t:'cb',v:'Join 5–10 komunitas target (Telegram/Discord/Reddit)'},
       {t:'hd',v:'HARI 5–7'},
       {t:'cb',v:'Post konten pertama di channel'},
-      {t:'cb',v:'Engage di komunitas (beri value dulu, jangan promo)'},
-      {t:'cb',v:'DM 10 orang dari network yang butuh layanan ini'},
+      {t:'cb',v:'Mulai engage di komunitas — beri value dulu, jangan langsung promo'},
+      {t:'cb',v:'DM 10 orang dari network yang kira-kira butuh layanan ini'},
       {t:'sp'},{t:'hi',v:'TARGET HARI 7: Channel 20+ subscriber, 1 prospect hangat'},
     ]},
     {h:'📅 HARI 8–15: Customer Pertama',l:[
-      {t:'cb',v:'Offer FREE Identity Audit ke 3 orang dari network (bayarnya testimoni)'},
-      {t:'cb',v:'DM 20 orang baru dengan template DM'},
-      {t:'cb',v:'Lanjut posting konten (fokus: before/after, insight)'},
-      {t:'cb',v:'Selesaikan 3 free audit → minta testimoni tertulis'},
-      {t:'cb',v:'Post testimoni + before/after di channel'},
-      {t:'cb',v:'Soft launch: "5 slot early bird — Rp50rb"'},
-      {t:'cb',v:'Follow up semua prospect'},
-      {t:'sp'},{t:'hi',v:'TARGET HARI 15: 2–3 paying customers pertama'},
+      {t:'hd',v:'HARI 8–10'},
+      {t:'cb',v:'Offer FREE Identity Audit ke 3 orang dari network (bayarnya testimoni + izin publish before/after)'},
+      {t:'cb',v:'DM 20 orang baru pakai template cold DM'},
+      {t:'cb',v:'Lanjut posting konten harian'},
+      {t:'hd',v:'HARI 11–12'},
+      {t:'cb',v:'Selesaikan 3 free audit → dokumentasikan prosesnya'},
+      {t:'cb',v:'Minta testimoni tertulis dari ketiganya'},
+      {t:'cb',v:'Post before/after + testimoni di channel'},
+      {t:'cb',v:'Soft launch: "Buka 5 slot early bird — Rp50rb (harga normal Rp75rb)"'},
+      {t:'hd',v:'HARI 13–15'},
+      {t:'cb',v:'Follow up semua prospect yang pernah di-DM sebelumnya'},
+      {t:'cb',v:'Tunjukkan hasil free audit di komunitas yang relevan'},
+      {t:'sp'},{t:'hi',v:'TARGET HARI 15: 2–3 paying customers pertama masuk ke @ugradeone'},
     ]},
     {h:'📅 HARI 16–30: Optimasi & Scale',l:[
+      {t:'hd',v:'HARI 16–20'},
       {t:'cb',v:'Naikkan harga ke normal (Rp75rb entry, Rp350rb core)'},
-      {t:'cb',v:'Launch referral program ke customer pertama'},
-      {t:'cb',v:'Approach partnership dengan 2–3 komunitas'},
-      {t:'cb',v:'Buat 1 digital product sederhana (template Notion Rp49rb)'},
+      {t:'cb',v:'Launch referral program ke semua customer pertama'},
+      {t:'cb',v:'Approach 2–3 admin komunitas untuk partnership'},
+      {t:'cb',v:'Buat 1 digital product pertama (template Notion, jual Rp49rb)'},
+      {t:'hd',v:'HARI 21–25'},
       {t:'cb',v:'Target: 10+ paying customers total'},
-      {t:'cb',v:'Buat case study dari customer terbaik (dengan izin)'},
-      {t:'cb',v:'Optimalkan automation workflow'},
-      {t:'cb',v:'Evaluasi revenue bulan 1, plan bulan 2'},
-      {t:'sp'},{t:'hi',v:'TARGET AKHIR HARI 30: Rp1.500.000–3.000.000 revenue'},
+      {t:'cb',v:'Buat 1 case study lengkap dari customer terbaik (dengan izin)'},
+      {t:'cb',v:'Optimalkan workflow AI — kurangi waktu pengerjaan per order'},
+      {t:'hd',v:'HARI 26–30'},
+      {t:'cb',v:'Hitung total revenue bulan 1 dan margin aktual'},
+      {t:'cb',v:'Identifikasi: produk mana yang paling laku dan paling mudah dibuat'},
+      {t:'cb',v:'Plan bulan 2: volume atau tambah produk baru?'},
+      {t:'sp'},{t:'hi',v:'TARGET AKHIR HARI 30: Rp1.500.000–3.000.000 revenue total'},
     ]},
   ],
   fin:[
-    {h:'💸 Alokasi Modal Rp500.000',l:[
-      {t:'arr',v:'ChatGPT Plus: Rp320.000 (core tool — tidak bisa ditunda)'},
-      {t:'arr',v:'Domain .id (opsional): Rp100.000'},
-      {t:'arr',v:'Biaya cadangan: Rp80.000'},
-      {t:'sp'},{t:'hi',v:'TOTAL: Rp500.000 ✓ — Hampir semua tools bisa free tier'},
+    {h:'💸 Alokasi Modal Awal Rp500.000',l:[
+      {t:'arr',v:'ChatGPT Plus: Rp320.000 → core AI tool, tidak bisa ditunda'},
+      {t:'arr',v:'Domain .id (opsional): Rp100.000 → branding profesional'},
+      {t:'arr',v:'Biaya cadangan: Rp80.000 → untuk kebutuhan mendadak'},
+      {t:'sp'},{t:'hi',v:'TOTAL: Rp500.000 ✓ — Semua tools lain bisa free tier'},
     ]},
-    {h:'📊 Break Even Point',l:[
-      {t:'arr',v:'Modal awal: Rp500.000'},
-      {t:'arr',v:'BEP: 7 Identity Audit (@Rp75rb) = Rp525.000 ✓'},
-      {t:'sp'},{t:'hi',v:'Realistis capai di hari ke 10–14'},
+    {h:'📊 Break Even Point & Target',l:[
+      {t:'hd',v:'BREAK EVEN'},
+      {t:'arr',v:'Modal: Rp500.000'},
+      {t:'arr',v:'BEP: 7 Identity Audit × Rp75.000 = Rp525.000 ✓'},
+      {t:'sp'},{t:'hi',v:'Realistis capai di hari ke-10 sampai 14'},
+      {t:'hd',v:'TARGET REVENUE'},
+      {t:'arr',v:'Bulan 1: Rp1.500.000–3.000.000 (validasi sistem)'},
+      {t:'arr',v:'Bulan 2: Rp5.000.000–8.000.000 (referral & repeat order)'},
+      {t:'arr',v:'Bulan 3+: Rp10.000.000+ (sistem + passive mulai jalan)'},
     ]},
-    {h:'📈 Target Revenue Bulanan',l:[
-      {t:'hd',v:'BULAN 1: Rp1.500.000–3.000.000'},
-      {t:'arr',v:'10–15 Identity Audit + 3–5 Core Products'},
-      {t:'hd',v:'BULAN 2: Rp5.000.000–8.000.000'},
-      {t:'arr',v:'Referral mulai jalan + repeat customers'},
-      {t:'hd',v:'BULAN 3+: Rp10.000.000+'},
-      {t:'arr',v:'Sistem berjalan, passive dari digital product'},
-    ]},
-    {h:'📊 Proyeksi Bulan 3+ (per bulan)',l:[
-      {t:'hi',v:'Entry Audit (20x Rp75rb):      Rp1.500.000'},
-      {t:'hi',v:'Core Products (10x avg):       Rp3.500.000'},
-      {t:'hi',v:'Premium (2x Rp1.75jt):        Rp3.500.000'},
-      {t:'hi',v:'Digital Products:              Rp500.000'},
-      {t:'hi',v:'Community (30x Rp99rb):       Rp2.970.000'},
+    {h:'📈 Proyeksi Revenue Bulan 3 (per bulan)',l:[
+      {t:'hi',v:'Entry Audit     20 order × Rp75rb   = Rp1.500.000'},
+      {t:'hi',v:'Core Products   10 order × Rp350rb  = Rp3.500.000'},
+      {t:'hi',v:'Premium          2 order × Rp1.75jt = Rp3.500.000'},
+      {t:'hi',v:'Digital Products                    = Rp500.000'},
+      {t:'hi',v:'Community       30 member × Rp99rb  = Rp2.970.000'},
       {t:'sp'},{t:'bold',v:'TOTAL PROYEKSI: ~Rp12.000.000/bulan'},
+      {t:'sp'},{t:'text',v:'Dengan modal operasional hanya ~Rp320rb/bulan (ChatGPT Plus), profit margin sangat tinggi.'},
     ]},
   ],
   scale:[
     {h:'🚀 FASE 1: Rp0 → Rp10 Juta/Bulan (Bulan 1–4)',l:[
       {t:'bold',v:'Fokus: VALIDASI & CASHFLOW'},
       {t:'sp'},
-      {t:'arr',v:'Solo founder, kerjakan sendiri semua order'},
-      {t:'arr',v:'Dokumentasikan setiap proses yang dilakukan'},
-      {t:'arr',v:'Kumpulkan 30+ testimoni dari customer'},
-      {t:'hd',v:'KPI'},
+      {t:'arr',v:'Solo founder — kerjakan semua order sendiri dulu'},
+      {t:'arr',v:'Dokumentasikan setiap proses yang dilakukan dengan detail'},
+      {t:'arr',v:'Kumpulkan minimum 30 testimoni dengan before/after nyata'},
+      {t:'arr',v:'Identifikasi: produk apa yang paling laku & paling cepat dibuat'},
+      {t:'hd',v:'KPI FASE 1'},
       {t:'arr',v:'Revenue: Rp10jt/bulan | Customers: 50+/bulan'},
-      {t:'arr',v:'Waktu kerja: <5 jam/hari | Conversion DM→sale: >20%'},
+      {t:'arr',v:'Waktu kerja: <5 jam/hari (maksimalkan AI) | DM→sale conversion: >20%'},
     ]},
     {h:'📈 FASE 2: Rp10 → Rp50 Juta/Bulan (Bulan 5–9)',l:[
       {t:'bold',v:'Fokus: SISTEM & LEVERAGE'},
       {t:'sp'},
-      {t:'arr',v:'Hire 1 "AI Operator" paruh waktu (Rp500rb–1jt/bulan)'},
-      {t:'arr',v:'Launch UGRADE Community berbayar (recurring)'},
-      {t:'arr',v:'Buat 3–5 digital products (passive income)'},
-      {t:'arr',v:'Partnership dengan 5+ komunitas aktif'},
-      {t:'hd',v:'REVENUE MIX TARGET'},
-      {t:'arr',v:'30% jasa | 30% digital product | 40% community'},
+      {t:'arr',v:'Hire 1 "AI Operator" paruh waktu — gaji project Rp500rb–1jt/bulan'},
+      {t:'arr',v:'Buat SOP tertulis yang bisa dijalankan orang lain tanpa kamu'},
+      {t:'arr',v:'Launch UGRADE Community berbayar (Rp99rb/bulan, target 100 member)'},
+      {t:'arr',v:'Launch 3–5 digital products (template, toolkit, mini course)'},
+      {t:'arr',v:'Partnership aktif dengan 5+ komunitas (jadi resource person)'},
+      {t:'hd',v:'TARGET REVENUE MIX'},
+      {t:'arr',v:'30% jasa | 30% digital product | 40% community membership'},
     ]},
     {h:'🏢 FASE 3: Rp50 → Rp100 Juta+/Bulan (Bulan 10–18)',l:[
-      {t:'bold',v:'Fokus: SCALE & BRAND'},
+      {t:'bold',v:'Fokus: SCALE & BRAND EQUITY'},
       {t:'sp'},
-      {t:'arr',v:'Team kecil: 3–5 orang (ops, content, sales)'},
-      {t:'arr',v:'Buka program affiliate/reseller'},
-      {t:'arr',v:'Launch cohort-based program (30 orang x Rp750rb = Rp22,5jt/batch)'},
-      {t:'arr',v:'B2B: jual ke perusahaan untuk employee digital upgrade'},
+      {t:'arr',v:'Team kecil 3–5 orang: 1 ops, 1 content creator, 1 sales/community'},
+      {t:'arr',v:'Launch cohort-based program: 30 orang × Rp750rb = Rp22,5jt/batch'},
+      {t:'arr',v:'Masuk B2B: jual "Employee Digital Upgrade" ke perusahaan (Rp5–20jt/kontrak)'},
+      {t:'arr',v:'Buka program affiliate reseller — komisi 15–20% per referral'},
+      {t:'arr',v:'Build IP kuat: metodologi UGRADE Framework dengan nama sendiri'},
     ]},
-    {h:'🌏 FASE 4: Perusahaan (Tahun 2–3)',l:[
+    {h:'🌏 FASE 4: Perusahaan & Platform (Tahun 2–3)',l:[
       {t:'bold',v:'Vision: UGRADE = Platform Upgrade Diri #1 Asia Tenggara'},
       {t:'sp'},
-      {t:'arr',v:'UGRADE Platform (web app assessment & learning path)'},
-      {t:'arr',v:'UGRADE Pro (subscription Rp199rb/bulan)'},
-      {t:'arr',v:'UGRADE Enterprise (B2B HR solution)'},
-      {t:'hd',v:'PRINSIP SEPANJANG PERJALANAN'},
-      {t:'arr',v:'Selalu AI-first dalam operasional'},
-      {t:'arr',v:'Selalu faceless → brand lebih kuat dari founder'},
-      {t:'arr',v:'Selalu cashflow positif sebelum ekspansi'},
+      {t:'arr',v:'UGRADE Platform — web app untuk assessment & personalized learning path'},
+      {t:'arr',v:'UGRADE Pro — subscription Rp199rb/bulan, akses semua tools & konten'},
+      {t:'arr',v:'UGRADE Enterprise — solusi B2B untuk HR & talent development'},
+      {t:'arr',v:'UGRADE Certified — sertifikasi digital identity yang diakui industri'},
+      {t:'hd',v:'PRINSIP YANG TIDAK BOLEH DILUPAKAN'},
+      {t:'arr',v:'Selalu AI-first dalam operasional — efisiensi di atas segalanya'},
+      {t:'arr',v:'Selalu faceless — kekuatan brand harus lebih besar dari founder'},
+      {t:'arr',v:'Selalu cashflow positif sebelum ekspansi ke tahap berikutnya'},
+      {t:'arr',v:'Selalu ukur kepuasan customer setiap bulan — growth harus sustainable'},
     ]},
   ],
 };
@@ -1054,32 +1021,6 @@ function switchTab(key,el){
   el.classList.add('on');
   renderOS(key);
   el.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-}
-
-// ── MODAL ──
-function openModal(tier){
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow='hidden';
-  if(tier){
-    const m={entry:'Identity Audit (Rp75.000)',core:'Identity Build (Rp350.000)',premium:'Full Upgrade System (Rp1.750.000)'};
-    if(m[tier])document.getElementById('iProd').value=m[tier];
-  }
-}
-function closeModal(){
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
-
-function submitOrder(){
-  const n=document.getElementById('iNama').value.trim();
-  const t=document.getElementById('iTg').value.trim();
-  const p=document.getElementById('iProd').value;
-  const g=document.getElementById('iGoal').value.trim();
-  if(!n||!t||!p||!g){alert('Lengkapi semua field ya!');return}
-  const msg=encodeURIComponent(`Halo UGRADE! Saya mau order:\n\nNama: ${n}\nTelegram: ${t}\nProduk: ${p}\nGoal: ${g}`);
-  window.open(`https://t.me/UGRADE_ID?text=${msg}`,'_blank');
-  closeModal();
 }
 
 renderOS('brand');
